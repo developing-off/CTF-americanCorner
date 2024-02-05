@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iofrm</title>
+    <title>Welcome</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontawesome-all.min.css') }}s">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/iofrm-style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/iofrm-theme14.css') }}">
     {% set logo_url = url_for('static', filename='images/logo.png') %}
 </head>
+
 <body>
     <div class="form-body">
         <div class="row">
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <div class="website-logo">
-                            <a href="index.html">
-                                <div class="logo" style="background-image: url('{{ logo_url }}');">
-                                    <img class="logo-size" src="{{ url_for('static', filename='images/logo.png') }}" alt="">
-                                </div>
-                            </a>
+                       
+                        <div class="col-12">
+                            <h3>Welcome To CTF Sql injection Challenge.</h3>
+                            <p>username: {{username}}</p>
+                            <center>
+                                <p>{{flag}} </p>
+                            </center>
                         </div>
-                        <h3>Welcome To CTF Sql injection Challenge.</h3>
-                        <p>username: {{username}}</p>
                         <hr style="background: white;">
                         <p>data: {{data}}</p>
-                        
-                      
-                            <div class="form-button">
-                                <a href="/"  class="ibtn">Logout</a> 
-                                
-                               
-                            </div>
-                       
+
+
+                        <div class="form-button">
+                            <a href="/" class="ibtn">Logout</a>
+
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -45,4 +46,5 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>

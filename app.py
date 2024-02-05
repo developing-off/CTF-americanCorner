@@ -1,5 +1,34 @@
 from flask import Flask, request, render_template
-import sqlite3
+import sqlite3,base64
+
+
+
+# Define a function to create a flag
+def create_flag(secret_message):
+    # Choose a format for the flag, such as CTF{secret_message}
+    flag_format = "CTF{{{}}}"
+    # Encode the secret message in base64
+    encoded_message = base64.b64encode(secret_message.encode()).decode()
+    # Insert the encoded message into the flag format
+    flag = flag_format.format(encoded_message)
+    # Return the flag
+    return flag
+
+# Define a function to decode a flag
+def decode_flag(flag):
+    # Extract the secret message from the flag format
+    secret_message = flag[4:-1]
+    # Decode the secret message from base64
+    decoded_message = base64.b64decode(secret_message.encode()).decode()
+    # Return the decoded message
+    return decoded_message
+
+# Test the functions with an example message
+message = "TOM gg"
+flag = create_flag(message)
+print("Flag:", flag)
+message = decode_flag(flag)
+print("Message:", message)
 
 app = Flask(__name__, static_folder='static')
 
@@ -7,7 +36,7 @@ app = Flask(__name__, static_folder='static')
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 cursor.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)')
-cursor.execute("INSERT INTO users (username, password) VALUES ('corner', 'american')")
+#cursor.execute("INSERT INTO users (username, password) VALUES ('corner', 'american')")
 conn.commit()
 conn.close()
 
@@ -32,7 +61,7 @@ def login():
         conn.close()
 
         if result:
-            return render_template('welcome.html', username=result[0][1], data=result)
+            return render_template('welcome.html', username=result[0][1], data=result, flag=flag)
         else:
             return 'Login failed'
 
