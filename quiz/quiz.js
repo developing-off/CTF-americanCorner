@@ -101,6 +101,14 @@ var quiz = {
     quiz.hQn.innerHTML = `You have answered ${quiz.score} of ${quiz.all} correctly.`;
     quiz.hAns.innerHTML = "";
     quiz.displayCounter(); // Display the correct answer counter
+
+    let solutionButton = document.createElement("button");
+  solutionButton.innerText = "See Solutions";
+  solutionButton.onclick = () => {
+    // Redirect to the solution page
+    window.location.href = "solution.html"; // Replace with your solution page URL
+  };
+  quiz.hAns.appendChild(solutionButton);
   },
 };
 
